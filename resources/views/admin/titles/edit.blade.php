@@ -5,23 +5,16 @@
 
 @section('content')
 
-<h1>Acualización de Autor</h1>
+<h1>Actualización de Carrera</h1>
 
-{!! Form::model($author, ['method'=>'PATCH', 'action'=> ['AdminAuthorsController@update', $author->id],'files'=>true]) !!}
+{!! Form::model($title, ['method'=>'PATCH', 'action'=> ['AdminTitlesController@update', $title->id],'files'=>true]) !!}
 
 <div class="col-sm-6" >
 
 <div class="form-group" >
     
-    {!! Form::label('nombre', 'Nombres:') !!}
+    {!! Form::label('nombre', 'Nombre:') !!}
     {!! Form::text('nombre', null, ['class'=> 'form-control']) !!}
-            
-</div>
-
-<div class="form-group" >
-    
-    {!! Form::label('apellidos', 'Apellidos:') !!}
-    {!! Form::text('apellidos', null, ['class'=> 'form-control']) !!}
             
 </div>
 
@@ -29,7 +22,7 @@
 <div class="form-group">
 
     
-     {!! Form::submit('Actualizar User', ['class'=> 'btn btn-primary col-sm-3']) !!}
+     {!! Form::submit('Actualizar Carrera', ['class'=> 'btn btn-primary col-sm-3']) !!}
     
 </div>
 
@@ -37,7 +30,7 @@
 {!! Form::close() !!}
 
 {{--  #Botón para eliminar al usuario  --}}
-        {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminAuthorsController@destroy', $author->id]]) !!}
+        {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminTitlesController@destroy', $title->id]]) !!}
 
         <div class="form-group">
                 {!! Form::submit('Borrar', ['class'=> 'btn btn-danger col-sm-3']) !!}
