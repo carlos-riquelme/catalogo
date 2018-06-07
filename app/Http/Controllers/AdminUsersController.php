@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersEditRequest;
 use App\User;
 use App\Role;
 
@@ -108,7 +109,7 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
         //
         $user = User::findOrFail($id);

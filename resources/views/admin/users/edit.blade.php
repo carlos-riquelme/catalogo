@@ -56,7 +56,7 @@
         {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy', $user->id]]) !!}
 
         <div class="form-group">
-                {!! Form::submit('Delete', ['class'=> 'btn btn-danger col-sm-3']) !!}
+                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger col-sm-3']) !!}
         </div>
         
         

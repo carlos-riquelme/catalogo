@@ -125,32 +125,64 @@ return [
             ],
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text' => 'Autores',
             'icon'        => 'file',
-            // 'label'       => 4,
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'url'  => 'admin/authors',
+                ],
+                [
+                    'text' => 'Crear Autor',
+                    'url' => 'admin/authors/create',
+                ],
+            ],
         ],
         [
-            'text'        => 'Tesis',
-            'url'         => 'admin/documents',
+            'text' => 'Tesis',
             'icon'        => 'file',
-            // 'label'       => 4,
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'url'  => 'admin/documents',
+                ],
+                [
+                    'text' => 'Crear Tesis',
+                    'url' => 'admin/documents/create',
+                ],
+            ],
         ],
         [
-            'text'        => 'Docentes',
-            'url'         => 'admin/teachers',
+            'text' => 'Docentes',
             'icon'        => 'file',
-            // 'label'       => 4,
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'url'  => 'admin/teachers',
+                ],
+                [
+                    'text' => 'Crear Docente',
+                    'url' => 'admin/teachers/create',
+                ],
+            ],
         ],
         [
-            'text'        => 'Carreras',
-            'url'         => 'admin/titles',
+            'text' => 'Carreras',
             'icon'        => 'file',
-            // 'label'       => 4,
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'url'  => 'admin/titles',
+                ],
+                [
+                    'text' => 'Crear Carrera',
+                    'url' => 'admin/titles/create',
+                ],
+            ],
         ],
         'ACCOUNT SETTINGS',
         [
