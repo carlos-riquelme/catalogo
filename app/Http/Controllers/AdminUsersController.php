@@ -8,6 +8,7 @@ use App\Http\Requests\UsersRequest;
 use App\User;
 use App\Role;
 
+
 class AdminUsersController extends Controller
 {
     /**
@@ -18,10 +19,13 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
+
         $users = User::all();
 
         return view('admin.users.index', compact('users'));
-    }
+
+        return view('admin.users.index');
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,9 +35,13 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
+
         $roles = Role::pluck('name', 'id')->all();
 
         return view('admin.users.create', compact('roles'));
+
+        return view('admin.users.create');
+
     }
 
     /**
@@ -42,6 +50,7 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(UsersRequest $request)
     {
         //
@@ -61,6 +70,7 @@ class AdminUsersController extends Controller
         Session::flash('created_user', 'Se ha agregado un nuevo usuario');
 
         return redirect('/admin/users');
+
     }
 
     /**
@@ -84,11 +94,13 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
+
         $user = User::findOrFail($id);
 
         $roles = Role::pluck('name', 'id')->all();
 
         return view('admin.users.edit', compact('user'));
+
     }
 
     /**
