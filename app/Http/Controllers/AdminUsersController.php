@@ -24,8 +24,7 @@ class AdminUsersController extends Controller
 
         return view('admin.users.index', compact('users'));
 
-        return view('admin.users.index');
-
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +39,6 @@ class AdminUsersController extends Controller
 
         return view('admin.users.create', compact('roles'));
 
-        return view('admin.users.create');
 
     }
 
@@ -99,7 +97,7 @@ class AdminUsersController extends Controller
 
         $roles = Role::pluck('name', 'id')->all();
 
-        return view('admin.users.edit', compact('user'));
+        return view('admin.users.edit', compact('user', 'roles'));
 
     }
 
@@ -113,6 +111,24 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+
+        if(trim($request->password == '')){
+
+            $input = $request->except('password');
+
+        } else {
+
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+
+        }
+        
+        $user->update($input);
+
+        Session::flash('updated_user', 'Se actualizó al usuario');
+
+        return redirect('/admin/users');
     }
 
     /**
@@ -124,5 +140,12 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        $user = USER::findOrFail($id);
+
+        $user->delete();
+
+        Session::flash('deleted_user', 'Se eliminó al usuario');
+
+        return redirect('/admin/users');
     }
 }

@@ -19,11 +19,35 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', function(){
+
+Route::group(['middleware' => 'admin'], function() {
+    //
+    Route::resource('admin/users', 'AdminUsersController');
+
+    Route::get('/admin', function(){
 
 
-    return view('admin.index');
+        return view('admin.index');
+    
+});
 
 });
 
-Route::resource('admin/users', 'AdminUsersController');
+
+
+
+
+    //Deprecado
+    // Route::get('admin/users', 'AdminUsersController@index');
+    // Route::get('admin/users', 'AdminUsersController@store');
+    // Route::get('admin/users/create', 'AdminUsersController@create')->name('admin.users.create');
+    // Route::get('admin/users/{id}/edit', 'AdminUsersController@edit')->name('admin.users.edit');
+    // Route::get('admin/users/{id}', 'AdminUsersController@update')->name('admin.users.update');
+    // Route::get('admin/users/{id}', 'AdminUsersController@destroy')->name('admin.users.destroy');
+    // Route::get('admin/users/{id}', 'AdminUsersController@show')->name('admin.users.show');
+
+
+    
+    
+
+

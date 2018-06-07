@@ -5,6 +5,24 @@
 
 @section('content')
 
+@if(Session::has('deleted_user'))
+
+        <p class="bg-danger">{{session('deleted_user')}}</p>
+
+@endif
+
+@if(Session::has('created_user'))
+
+        <p class="bg-danger">{{session('created_user')}}</p>
+
+@endif
+
+@if(Session::has('updated_user'))
+
+        <p class="bg-danger">{{session('updated_user')}}</p>
+
+@endif
+
     <h1>Usuarios del sistema</h1>
 
     <table class="table table-bordered table-hover">
@@ -24,7 +42,7 @@
             @foreach($users as $user)
             <tr>
                 <td>{{$user->id}}</td>
-                <td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
+                <td><a href="{{route('users.edit', ['id' => $user->id])}}">{{$user->name}}</a></td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name}}</td>
                 <td>{{$user->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>
