@@ -145,7 +145,7 @@ return [
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Todos',
+                    'text' => 'Todas',
                     'url'  => 'admin/documents',
                 ],
                 [
@@ -175,7 +175,7 @@ return [
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Todos',
+                    'text' => 'Todas',
                     'url'  => 'admin/titles',
                 ],
                 [

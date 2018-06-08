@@ -5,7 +5,7 @@
 
 @section('content')
 
-<h1>Listado de Autores registrados en el Sistema</h1>
+<h1>Listado de Docentes registrados en el Sistema</h1>
 
 @if(Session::has('deleted_teacher'))
 
