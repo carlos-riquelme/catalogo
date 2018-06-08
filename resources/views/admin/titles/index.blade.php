@@ -7,6 +7,24 @@
 
 <h1>Listado de Carreras registradas en el Sistema</h1>
 
+@if(Session::has('deleted_title'))
+
+        <p class="bg-danger">{{session('deleted_title')}}</p>
+
+@endif
+
+@if(Session::has('created_title'))
+
+        <p class="bg-danger">{{session('created_title')}}</p>
+
+@endif
+
+@if(Session::has('updated_title'))
+
+        <p class="bg-danger">{{session('updated_title')}}</p>
+
+@endif
+
     <table class="table table-bordered table-hover">
         <thead>
             <tr>

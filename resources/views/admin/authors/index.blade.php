@@ -7,6 +7,24 @@
 
 <h1>Listado de Autores registrados en el Sistema</h1>
 
+@if(Session::has('deleted_author'))
+
+        <p class="bg-danger">{{session('deleted_author')}}</p>
+
+@endif
+
+@if(Session::has('created_author'))
+
+        <p class="bg-danger">{{session('created_author')}}</p>
+
+@endif
+
+@if(Session::has('updated_author'))
+
+        <p class="bg-danger">{{session('updated_author')}}</p>
+
+@endif
+
     <table class="table table-bordered table-hover">
         <thead>
             <tr>

@@ -36,7 +36,7 @@
 
 {!! Form::close() !!}
 
-{{--  #Botón para eliminar al usuario  --}}
+{{--  #Botón para eliminar al autor  --}}
         {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminAuthorsController@destroy', $author->id]]) !!}
 
         <div class="form-group">

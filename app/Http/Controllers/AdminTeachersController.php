@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\AuthorsRequest;
-use App\Http\Requests\AuthorsEditRequest;
-use App\Author;
+use App\Http\Requests\TeachersRequest;
+use App\Http\Requests\TeachersEditRequest;
+use App\Teacher;
 
-class AdminAuthorsController extends Controller
+class AdminTeachersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class AdminAuthorsController extends Controller
     public function index()
     {
         //
-        $authors = Author::all();
+        $teachers = Teacher::all();
 
-        return view('admin.authors.index', compact('authors'));
+        return view('admin.teachers.index', compact('teachers'));
     }
 
     /**
@@ -31,7 +31,7 @@ class AdminAuthorsController extends Controller
     public function create()
     {
         //
-        return view('admin.authors.create');
+        return view ('admin.teachers.create');
     }
 
     /**
@@ -40,16 +40,16 @@ class AdminAuthorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AuthorsRequest $request)
+    public function store(TeachersRequest $request)
     {
         //
         $input = $request->all();
-        
-        Author::create($input);
 
-        Session::flash('created_author', 'Se ha agregado un nuevo autor.');
+        Teacher::create($input);
 
-        return redirect('/admin/authors');
+        Session::flash('created_teacher', 'Se ha agregado un nuevo docente.');
+
+        return redirect('admin/teachers');
     }
 
     /**
@@ -73,9 +73,9 @@ class AdminAuthorsController extends Controller
     public function edit($id)
     {
         //
-        $author = Author::findOrFail($id);
+        $teacher = Teacher::findOrFail($id);
 
-        return view('admin.authors.edit', compact('author'));
+        return view('admin.teachers.edit', compact('teacher'));
     }
 
     /**
@@ -85,18 +85,18 @@ class AdminAuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AuthorsEditRequest $request, $id)
+    public function update(TeachersEditRequest $request, $id)
     {
         //
-        $author = Author::findOrFail($id);
+        $teacher = Teacher::findOrFail($id);
 
         $input = $request->all();
 
-        $author->update($input);
+        $teacher->update($input);
 
-        Session::flash('updated_author', 'Se actualizó al autor');
+        Session::flash('updated_teacher', 'Se ha actualizado al docente');
 
-        return redirect('/admin/authors');
+        return redirect('/admin/teachers');
     }
 
     /**
@@ -108,12 +108,12 @@ class AdminAuthorsController extends Controller
     public function destroy($id)
     {
         //
-        $author = Author::findOrFail($id);
+        $teacher = Teacher::findOrFail($id);
 
-        $author->delete();
+        $teacher->delete();
 
-        Session::flash('deleted_author', 'Se eliminó al autor');
+        Session::flash('deleted_teacher', 'Se ha eliminado al docente.');
 
-        return redirect('/admin/authors');
+        return redirect('/admin/teachers');
     }
 }
