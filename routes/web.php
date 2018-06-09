@@ -26,7 +26,7 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin/authors', 'AdminAuthorsController');
     Route::resource('admin/titles', 'AdminTitlesController');
     Route::resource('admin/teachers', 'AdminTeachersController');
-    Route::resource('admin/documents', 'AdminDocumentsController');
+    Route::resource('admin/papers', 'AdminPapersController');
 
     Route::get('/admin', function(){
 

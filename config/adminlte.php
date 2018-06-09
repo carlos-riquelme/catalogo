@@ -146,11 +146,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Todas',
-                    'url'  => 'admin/documents',
+                    'url'  => 'admin/papers',
                 ],
                 [
                     'text' => 'Crear Tesis',
-                    'url' => 'admin/documents/create',
+                    'url' => 'admin/papers/create',
                 ],
             ],
         ],

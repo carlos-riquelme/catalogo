@@ -25,13 +25,14 @@
             
 </div>
 
- {{--  <div class="form-group">
+ <div class="form-group">
     
-    {!! Form::label('role_id', 'Rol:') !!}
-    {!! Form::select('role_id', ['' => 'Escoger'] + $roles, null, ['class'=> 'form-control']) !!}
+    {!! Form::label('papers_idpapers', 'Asociar a Tesis:') !!}
+    {!! Form::select('papers_idpapers', ['' => 'Seleccionar'] + $papers, null, ['class'=> 'form-control']) !!}
     
     
 </div>
+{{--  
 <div class="form-group">
     {!! Form::label('is_active', 'Estado:') !!}
     {!! Form::select('is_active', array(1 => 'Activo', 0=> 'Inactivo'), 0 , ['class'=> 'form-control']) !!}

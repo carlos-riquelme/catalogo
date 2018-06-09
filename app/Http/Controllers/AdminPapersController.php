@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PapersRequest;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\AuthorsRequest;
-use App\Http\Requests\AuthorsEditRequest;
-use App\Author;
 use App\Paper;
+use App\Title;
+use App\Teacher;
+use App\Photo;
 
-class AdminAuthorsController extends Controller
+class AdminPapersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +20,9 @@ class AdminAuthorsController extends Controller
     public function index()
     {
         //
-        $authors = Author::all();
+        $papers = Paper::all();
 
-        return view('admin.authors.index', compact('authors'));
+        return view('admin.papers.index', compact('papers'));
     }
 
     /**
@@ -32,9 +33,11 @@ class AdminAuthorsController extends Controller
     public function create()
     {
         //
-        $papers = Paper::pluck('titulo','id')->all();
+        $teachers = Teacher::pluck('nombre', 'id')->all();
 
-        return view('admin.authors.create', compact('papers'));
+        $titles = Title::pluck('nombre', 'id')->all();
+
+        return view('admin.papers.create', compact('teachers', 'titles'));
     }
 
     /**
@@ -43,16 +46,29 @@ class AdminAuthorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AuthorsRequest $request)
+    public function store(PapersRequest $request)
     {
         //
         $input = $request->all();
-        
-        Author::create($input);
 
-        Session::flash('created_author', 'Se ha agregado un nuevo autor.');
+        if($file = $request->file('photo_id')) {
 
-        return redirect('/admin/authors');
+
+            $name = time() . $file->getClientOriginalName();
+
+
+            $file->move('images', $name);
+
+            $photo = Photo::create(['file'=>$name]);
+
+            $input['photo_id'] = $photo->id;
+
+
+        }
+
+        Paper::create($input);
+
+        return redirect('/admin/papers');
     }
 
     /**
@@ -64,7 +80,6 @@ class AdminAuthorsController extends Controller
     public function show($id)
     {
         //
-        return view('admin.authors.show');
     }
 
     /**
@@ -76,9 +91,6 @@ class AdminAuthorsController extends Controller
     public function edit($id)
     {
         //
-        $author = Author::findOrFail($id);
-
-        return view('admin.authors.edit', compact('author'));
     }
 
     /**
@@ -88,18 +100,9 @@ class AdminAuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AuthorsEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $author = Author::findOrFail($id);
-
-        $input = $request->all();
-
-        $author->update($input);
-
-        Session::flash('updated_author', 'Se actualizó al autor');
-
-        return redirect('/admin/authors');
     }
 
     /**
@@ -111,12 +114,5 @@ class AdminAuthorsController extends Controller
     public function destroy($id)
     {
         //
-        $author = Author::findOrFail($id);
-
-        $author->delete();
-
-        Session::flash('deleted_author', 'Se eliminó al autor');
-
-        return redirect('/admin/authors');
     }
 }

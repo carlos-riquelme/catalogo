@@ -16,13 +16,8 @@ class Title extends Model
     
     public function paper(){
 
-        return $this->belongsTo('App\Paper');
+        return $this->hasMany('App\Paper', 'titles_idtitles', 'id');
         
     }
 
-    public function teacher(){
-
-        return $this->belongsTo('App\Teacher');
-        
-    }
 }

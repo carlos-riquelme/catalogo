@@ -13,9 +13,9 @@ class Teacher extends Model
 
     ];
 
-    public function title(){
+    public function paper(){
 
-        return $this->hasMany('App\Title');
+        return $this->hasMany('App\Paper', 'teachers_idteachers', 'id');
 
     }
 }
