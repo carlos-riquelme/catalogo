@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+// use App\Author;
 
 class Paper extends Model
 {
@@ -10,25 +11,25 @@ class Paper extends Model
 
     protected $fillable = [
 
-        'titulo', 'codigo', 'año', 'photo_id','titles_idtitles', 'teachers_idteachers', 
+        'titulo', 'codigo', 'año', 'photo_id', 'title_id', 'teacher_id'
 
     ];
 
     public function title(){
 
-        return $this->belongsTo('App\Title', 'titles_idtitles', 'id');
+        return $this->belongsTo('App\Title');
 
     }
 
-    public function author(){
+    public function authors(){
 
-        return $this->belongsTo('App\Author');
+        return $this->belongsToMany('App\Author')->withTimestamps();
 
     }
 
     public function teacher(){
 
-        return $this->belongsTo('App\Teacher', 'teachers_idteachers', 'id');
+        return $this->belongsTo('App\Teacher');
 
     }
 

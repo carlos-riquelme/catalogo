@@ -26,7 +26,8 @@ class AuthorsRequest extends FormRequest
         return [
             //
             'nombre' => 'required',
-            'apellidos' => 'required'
+            'apellidos' => 'required',
+            'paper_id' => 'required'
         ];
     }
 }

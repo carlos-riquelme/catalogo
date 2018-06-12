@@ -25,10 +25,10 @@
             
 </div>
 
- <div class="form-group">
+<div class="form-group">
     
-    {!! Form::label('papers_idpapers', 'Asociar a Tesis:') !!}
-    {!! Form::select('papers_idpapers', ['' => 'Seleccionar'] + $papers, null, ['class'=> 'form-control']) !!}
+    {!! Form::label('paper_id', 'Asociar a Tesis:') !!}
+    {!! Form::select('paper_id', ['' => 'Seleccionar'] + $papers, null, ['class'=> 'form-control']) !!}
     
     
 </div>

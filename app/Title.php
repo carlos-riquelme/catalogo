@@ -16,7 +16,7 @@ class Title extends Model
     
     public function paper(){
 
-        return $this->hasMany('App\Paper', 'titles_idtitles', 'id');
+        return $this->hasMany('App\Paper');
         
     }
 

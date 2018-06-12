@@ -24,15 +24,15 @@
         <p class="bg-danger">{{session('updated_author')}}</p>
 
 @endif
-
+{{ $authors->links() }}
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                {{--  <th>Carrera</th>
-                <th>Tesis</th>  --}}
+                <th>Tesis</th>
+                {{--  <th>Tesis</th>  --}}
                 <th>Fecha de registro</th>
                 <th>Fecha de actualización</th>
             </tr>
@@ -44,8 +44,21 @@
                 <td>{{$author->id}}</td>
                 <td><a href="{{route('authors.edit', ['id' => $author->id])}}">{{$author->nombre}}</a></td>
                 <td>{{$author->apellidos}}</td>
-                {{--  <td>{{$author->role->name}}</td>
-                <td>{{$author->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>  --}}
+                {{--  <td>{{$author->papers->titulo}}</td>  --}}
+                
+                <td>
+                @if($author->papers)
+
+                    @foreach($author->papers as $paper)
+                        <a href="{{route('papers.edit', ['id' => $paper->id])}}">{{$paper->titulo}}</a>
+                    @endforeach
+
+                @else
+                    "No tiene Tesis registradas."
+                @endif
+                </td>    
+                
+                {{--  <td>{{$author->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>  --}}
                 <td>{{$author->created_at->diffForHumans()}}</td>
                 <td>{{$author->updated_at->diffForHumans()}}</td>
             </tr>
@@ -54,5 +67,5 @@
 
         </tbody>
     </table>
-
+{{ $authors->links() }}
 @stop

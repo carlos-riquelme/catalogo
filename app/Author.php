@@ -3,17 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+// use App\Paper;
 
 class Author extends Model
 {
     //
     protected $fillable = [
-            'nombre', 'apellidos',
+            'nombre', 'apellidos', 'paper_id'
     ];
 
-    public function paper(){
+    public function papers(){
 
-        return $this->hasMany('App\Paper');
+        return $this->belongsToMany('App\Paper')->withTimestamps();
 
     }
 }

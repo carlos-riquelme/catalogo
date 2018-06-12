@@ -15,8 +15,7 @@ class AddForeignKeyToAuthors extends Migration
     {
         Schema::table('authors', function (Blueprint $table) {
             //
-            $table->integer('papers_idpapers')->unsigned()->index()->after('apellidos');
-            $table->foreign('papers_idpapers')->references('id')->on('papers');
+            $table->integer('paper_id')->unsigned()->index()->nullable()->after('apellidos');
         });
     }
 
@@ -29,7 +28,7 @@ class AddForeignKeyToAuthors extends Migration
     {
         Schema::table('authors', function (Blueprint $table) {
             //
-            $table->dropColumn('papers_idpapers');
+            $table->dropColumn('paper_id');
         });
     }
 }

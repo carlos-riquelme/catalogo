@@ -15,10 +15,8 @@ class AddForeignKeyToPapers extends Migration
     {
         Schema::table('papers', function (Blueprint $table) {
             //
-            $table->integer('titles_idtitles')->unsigned()->index()->after('año');
-            $table->foreign('titles_idtitles')->references('id')->on('titles');
-            $table->integer('teachers_idteachers')->unsigned()->index()->after('titles_idtitles');
-            $table->foreign('teachers_idteachers')->references('id')->on('teachers');
+            $table->integer('title_id')->unsigned()->index()->nullable()->after('año');
+            $table->integer('teacher_id')->unsigned()->index()->nullable()->after('title_id');
         });
     }
 
@@ -31,8 +29,8 @@ class AddForeignKeyToPapers extends Migration
     {
         Schema::table('papers', function (Blueprint $table) {
             //
-            $table->dropColumn('titles_idtitles');
-            $table->dropColumn('teachers_idteachers');
+            $table->dropColumn('title_id');
+            $table->dropColumn('teacher_id');
         });
     }
 }

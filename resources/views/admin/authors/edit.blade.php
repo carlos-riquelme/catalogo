@@ -5,7 +5,7 @@
 
 @section('content')
 
-<h1>Acualización de Autor</h1>
+<h1>Actualización de Autor</h1>
 
 {!! Form::model($author, ['method'=>'PATCH', 'action'=> ['AdminAuthorsController@update', $author->id],'files'=>true]) !!}
 
@@ -23,6 +23,14 @@
     {!! Form::label('apellidos', 'Apellidos:') !!}
     {!! Form::text('apellidos', null, ['class'=> 'form-control']) !!}
             
+</div>
+
+<div class="form-group">
+    
+    {!! Form::label('paper_id', 'Tesis asociada:') !!}
+    {!! Form::select('paper_id', $papers, null, ['class'=> 'form-control']) !!}
+    
+    
 </div>
 
 

@@ -19,8 +19,11 @@ class AdminAuthorsController extends Controller
     public function index()
     {
         //
-        $authors = Author::all();
+        $authors = Author::simplePaginate(15);
 
+        // $papers = Paper::has('author')->get();
+
+        // return view('admin.authors.index', compact('authors', 'papers'));
         return view('admin.authors.index', compact('authors'));
     }
 
@@ -46,9 +49,18 @@ class AdminAuthorsController extends Controller
     public function store(AuthorsRequest $request)
     {
         //
-        $input = $request->all();
+        $author = New Author();
         
-        Author::create($input);
+        $author->nombre = $request->nombre;
+        $author->apellidos = $request->apellidos;
+
+        $author->save();
+
+        $paper = $request->paper_id;
+        
+        $paper = Paper::find($paper);
+
+        $paper->author()->attach($paper);
 
         Session::flash('created_author', 'Se ha agregado un nuevo autor.');
 
@@ -78,7 +90,9 @@ class AdminAuthorsController extends Controller
         //
         $author = Author::findOrFail($id);
 
-        return view('admin.authors.edit', compact('author'));
+        $papers = Paper::pluck('titulo','id')->all();
+
+        return view('admin.authors.edit', compact('author', 'papers', 'papier'));
     }
 
     /**

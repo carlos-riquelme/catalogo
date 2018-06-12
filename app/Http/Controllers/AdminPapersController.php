@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PapersRequest;
+use App\Http\Requests\PapersEditRequest;
 use Illuminate\Support\Facades\Session;
 use App\Paper;
 use App\Title;
 use App\Teacher;
+use App\Author;
 use App\Photo;
 
 class AdminPapersController extends Controller
@@ -53,9 +55,7 @@ class AdminPapersController extends Controller
 
         if($file = $request->file('photo_id')) {
 
-
             $name = time() . $file->getClientOriginalName();
-
 
             $file->move('images', $name);
 
@@ -63,10 +63,20 @@ class AdminPapersController extends Controller
 
             $input['photo_id'] = $photo->id;
 
-
         }
 
+        // $author = [
+        //     'nombre' => $request->nombre,
+        //     'apellidos' => $request->apellidos
+        // ];
+
         Paper::create($input);
+
+        // Author::create($author);
+
+        // $paper->author()->save($author);
+
+        Session::flash('created_paper', 'Se ha agregado una nueva Tesis.');
 
         return redirect('/admin/papers');
     }
@@ -91,6 +101,13 @@ class AdminPapersController extends Controller
     public function edit($id)
     {
         //
+        $papers = Paper::findOrFail($id);
+
+        $teachers = Teacher::pluck('nombre', 'id')->all();
+
+        $titles = Title::pluck('nombre', 'id')->all();
+
+        return view('admin.papers.edit', compact('papers', 'teachers', 'titles'));
     }
 
     /**
@@ -100,9 +117,30 @@ class AdminPapersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PapersEditRequest $request, $id)
     {
         //
+        $paper = Paper::findOrFail($id);
+
+        $input = $request->all();
+
+        if($file = $request->file('photo_id')) {
+
+            $name = time() . $file->getClientOriginalName();
+
+            $file->move('images', $name);
+
+            $photo = Photo::create(['file'=>$name]);
+
+            $input['photo_id'] = $photo->id;
+
+        }
+
+        $paper->update($input);
+
+        Session::flash('updated_paper', 'Se actualizó la Tesis');
+
+        return redirect('/admin/papers');
     }
 
     /**
@@ -114,5 +152,12 @@ class AdminPapersController extends Controller
     public function destroy($id)
     {
         //
+        $paper = Paper::findOrFail($id);
+
+        $paper->delete();
+
+        Session::flash('deleted_paper', 'Se ha eliminado la Tesis.');
+
+        return redirect('/admin/papers');
     }
 }
