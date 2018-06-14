@@ -201,6 +201,7 @@ th {
   a,
   a:visited {
     text-decoration: underline;
+    /* color: white; */
   }
   a[href]:after {
     content: " (" attr(href) ")";

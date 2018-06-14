@@ -28,12 +28,12 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin/teachers', 'AdminTeachersController');
     Route::resource('admin/papers', 'AdminPapersController');
 
-    Route::get('/admin', function(){
+    // Route::get('/admin', function(){
 
 
-        return view('admin.index');
-    
-});
+    //     return view('admin.index');
+    Route::get('/admin', 'AdminBoxesController@index');
+// });
 
 });
 
