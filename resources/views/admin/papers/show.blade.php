@@ -5,11 +5,9 @@
 
 @section('content')
 
-
-
 <h1>Edición de Tesis</h1>
 
-{!! Form::model($papers, ['method'=>'PATCH', 'action'=> ['AdminPapersController@update', $papers->id],'files'=>true]) !!}
+{!! Form::model($papers, ['method'=>'GET', 'action'=> ['AdminPapersController@show', $papers->id],'files'=>true]) !!}
 
 <div class="col-sm-3">
 
@@ -24,14 +22,14 @@
 <div class="form-group" >
     
     {!! Form::label('titulo', 'Título:') !!}
-    {!! Form::text('titulo', null, ['class'=> 'form-control']) !!}
+    {!! Form::text('titulo', null, ['readonly', 'class'=> 'form-control']) !!}
             
 </div>
 
-<div class="form-group">
+{{--  <div class="form-group">
             {!! Form::label('photo_id', 'Portada:') !!}
-            {!! Form::file('photo_id', null, ['class'=>'form-control'])!!}
-</div>
+            {!! Form::file('photo_id', null, ['readonly', 'class'=>'form-control'])!!}
+</div>  --}}
 
 {{--  <div class="form-group" >
     
@@ -50,21 +48,23 @@
 <div class="form-group" >
     
     {!! Form::label('codigo', 'Código:') !!}
-    {!! Form::text('codigo', null, ['class'=> 'form-control']) !!}
+    {!! Form::text('codigo', null, ['readonly', 'class'=> 'form-control']) !!}
             
 </div>
 
 <div class="form-group">
     
     {!! Form::label('año', 'Año:') !!}
-    {!! Form::selectYear('año', 2018, 2010, ['class'=> 'form-control']) !!}
+    {{--  {!! Form::selectYear('año', 2018, 2010, ['readonly', 'class'=> 'form-control']) !!}  --}}
+    {!! Form::text('año', null, ['readonly', 'class'=> 'form-control']) !!}
     
     
 </div>
 <div class="form-group">
     
     {!! Form::label('title_id', 'Título al que postula:') !!}
-    {!! Form::select('title_id', ['' => 'Escoger'] + $titles, null, ['class'=> 'form-control']) !!}
+    {{--  {!! Form::select('title_id', $titles, null, ['readonly', 'class'=> 'form-control']) !!}  --}}
+    {!! Form::text('title_id', $papers->title->nombre, ['readonly', 'class'=> 'form-control']) !!}
     
     
 </div>
@@ -72,7 +72,8 @@
 <div class="form-group">
     
     {!! Form::label('teacher_id', 'Docente Guía:') !!}
-    {!! Form::select('teacher_id', ['' => 'Escoger'] + $teachers, null, ['class'=> 'form-control']) !!}
+    {{--  {!! Form::select('teacher_id', $teachers, null, ['readonly', 'class'=> 'form-control']) !!}  --}}
+    {!! Form::text('teacher_id', $papers->teacher->nombre, ['readonly', 'class'=> 'form-control']) !!}
     
     
 </div>
@@ -81,25 +82,14 @@
 <div class="form-group">
 
     
-    {!! Form::submit('Actualizar Tesis', ['class'=> 'btn btn-success col-sm-3']) !!}
-    <a href="{{ URL::previous() }}" class="btn btn-primary col-sm-3">Cancelar</a>
+    {{--  {!! Form::submit('Actualizar Tesis', ['class'=> 'btn btn-primary col-sm-3']) !!}  --}}
+    <a href="{{route('papers.index') }}" class="btn btn-success">Index</a>
+    <a href="{{route('papers.edit', ['id' => $papers->id])}}" class="btn btn-primary">Editar</a>
     
 </div>
 
 
 {!! Form::close() !!}
 
-{{--  #Botón para eliminar al autor  --}}
-        {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminPapersController@destroy', $papers->id]]) !!}
-
-        <div class="form-group">
-                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger col-sm-3']) !!}
-        </div>
-        
-        
-        {!! Form::close() !!}
-
-@include('includes.form_error')
 </div>
-
 @stop

@@ -5,33 +5,48 @@
 
 @section('content')
 
-<h1>Listado de Tesis registradas en el Sistema</h1>
+<h1>Visualización de Docente</h1>
 
-@if(Session::has('deleted_paper'))
+{!! Form::model($teacher, ['method'=>'GET', 'action'=> ['AdminTeachersController@show', $teacher->id],'files'=>true]) !!}
 
-        <p class="bg-danger">{{session('deleted_paper')}}</p>
+<div class="col-sm-6" >
 
-@endif
+<div class="form-group" >
+    
+    {!! Form::label('nombre', 'Nombres:') !!}
+    {!! Form::text('nombre', null, ['readonly', 'class'=> 'form-control']) !!}
+            
+</div>
 
-@if(Session::has('created_paper'))
+<div class="form-group">
+            {!! Form::label('tipo', 'Tipo:') !!}
+            {!! Form::select('tipo', array("Guía" => 'Guía', "Evaluador"=> 'Evaluador'), null , ['readonly', 'class'=> 'form-control']) !!}
+</div>
 
-        <p class="bg-danger">{{session('created_paper')}}</p>
 
-@endif
+<div class="form-group">
 
-@if(Session::has('updated_paper'))
+    
+     {{--  {!! Form::submit('Actualizar Docente', ['class'=> 'btn btn-primary col-sm-3']) !!}  --}}
+     
+     <a href="{{route('teachers.index')}}" class="btn btn-success col-sm-3">Index</a>
+     <a href="{{route('teachers.edit', ['id' => $teacher->id])}}" class="btn btn-primary col-sm-3">Editar</a>
+     
+    
+</div>
 
-        <p class="bg-danger">{{session('updated_paper')}}</p>
 
-@endif
+{!! Form::close() !!}
 
-@if(Session::has('existing_user'))
 
-        <p class="bg-danger">{{session('existing_user')}}</p>
+@include('includes.form_error')
+</div>
 
-@endif
+<div class="col-sm-12" >
 
-    <table class="table table-bordered table-hover">
+<h2>Listado de Tesis asociadas al docente</h2>
+
+<table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -52,7 +67,7 @@
             <tr>
                 <td>{{$paper->id}}</td>
                 <td> <img height="150" src="{{$paper->photo ? $paper->photo->file : 'http://placehold.it/400x400'}}" alt="" ></td>
-                <td><a href="{{route('papers.show', ['id' => $paper->id])}}">{{$paper->titulo}}</a></td>
+                <td><a href="{{route('papers.edit', ['id' => $paper->id])}}">{{$paper->titulo}}</a></td>
                 <td>
                     @if($paper->authors)
 
@@ -76,4 +91,5 @@
         </tbody>
     </table>
 
+</div>
 @stop

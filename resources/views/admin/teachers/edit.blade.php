@@ -5,7 +5,7 @@
 
 @section('content')
 
-<h1>Acualización de Docente</h1>
+<h1>Actualización de Docente</h1>
 
 {!! Form::model($teacher, ['method'=>'PATCH', 'action'=> ['AdminTeachersController@update', $teacher->id],'files'=>true]) !!}
 
@@ -27,7 +27,8 @@
 <div class="form-group">
 
     
-     {!! Form::submit('Actualizar Docente', ['class'=> 'btn btn-primary col-sm-3']) !!}
+     {!! Form::submit('Actualizar Docente', ['class'=> 'btn btn-success col-sm-3']) !!}
+     <a href="{{ URL::previous() }}" class="btn btn-primary col-sm-3">Cancelar</a>
     
 </div>
 

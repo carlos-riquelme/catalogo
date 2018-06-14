@@ -30,8 +30,10 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Apellidos</th>
+                {{--  <th>Apellidos</th>  --}}
+                <th>Carrera</th>
                 <th>Tesis</th>
+                <th>Año</th>
                 {{--  <th>Tesis</th>  --}}
                 <th>Fecha de registro</th>
                 <th>Fecha de actualización</th>
@@ -42,22 +44,31 @@
             @foreach($authors as $author)
             <tr>
                 <td>{{$author->id}}</td>
-                <td><a href="{{route('authors.edit', ['id' => $author->id])}}">{{$author->nombre}}</a></td>
-                <td>{{$author->apellidos}}</td>
+                <td><a href="{{route('authors.show', ['id' => $author->id])}}">{{$author->nombre}} {{$author->apellidos}}</a></td>
+                {{--  <td>{{$author->apellidos}}</td>  --}}
                 {{--  <td>{{$author->papers->titulo}}</td>  --}}
                 
+                <td>
+                    @foreach($author->papers as $paper)
+                        {{$paper->title->nombre}}
+                    @endforeach
+                </td>
                 <td>
                 @if($author->papers)
 
                     @foreach($author->papers as $paper)
-                        <a href="{{route('papers.edit', ['id' => $paper->id])}}">{{$paper->titulo}}</a>
+                        <a href="{{route('papers.show', ['id' => $paper->id])}}">{{$paper->titulo}}</a>
                     @endforeach
 
                 @else
                     "No tiene Tesis registradas."
                 @endif
                 </td>    
-                
+                <td>
+                    @foreach($author->papers as $paper)
+                        {{$paper->año}}
+                    @endforeach
+                </td>
                 {{--  <td>{{$author->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>  --}}
                 <td>{{$author->created_at->diffForHumans()}}</td>
                 <td>{{$author->updated_at->diffForHumans()}}</td>

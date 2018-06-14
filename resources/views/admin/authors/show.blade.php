@@ -5,39 +5,49 @@
 
 @section('content')
 
-<h1>Listado de Tesis registradas en el Sistema</h1>
+<h1>Visualización de Autor</h1>
 
-@if(Session::has('deleted_paper'))
+{!! Form::model($author, ['method'=>'GET', 'action'=> ['AdminAuthorsController@show', $author->id],'files'=>true]) !!}
 
-        <p class="bg-danger">{{session('deleted_paper')}}</p>
+<div class="col-sm-6" >
 
-@endif
+<div class="form-group" >
+    
+    {!! Form::label('nombre', 'Nombres:') !!}
+    {!! Form::text('nombre', null, ['readonly','class'=> 'form-control']) !!}
+            
+</div>
 
-@if(Session::has('created_paper'))
+<div class="form-group" >
+    
+    {!! Form::label('apellidos', 'Apellidos:') !!}
+    {!! Form::text('apellidos', null, ['readonly', 'class'=> 'form-control']) !!}
+            
+</div>
 
-        <p class="bg-danger">{{session('created_paper')}}</p>
+<div class="form-group">
 
-@endif
+    {{--  {!! Form::button('Volver', ['class'=> 'btn btn-primary']) !!}  --}}
+    <a href="{{route('authors.index')}}" class="btn btn-primary">Index</a>
+    <a href="{{route('authors.edit', ['id' => $author->id])}}" class="btn btn-primary">Editar</a>
+                
+</div>
+{!! Form::close() !!}
 
-@if(Session::has('updated_paper'))
 
-        <p class="bg-danger">{{session('updated_paper')}}</p>
+@include('includes.form_error')
+</div>
+<div class="col-sm-12" >
 
-@endif
+<h2>Listado de Tesis asociadas al autor</h2>
 
-@if(Session::has('existing_user'))
-
-        <p class="bg-danger">{{session('existing_user')}}</p>
-
-@endif
-
-    <table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Portada</th>
                 <th>Título</th>
-                <th>Autor</th>
+                {{--  <th>Autor</th>  --}}
                 <th>Año</th>
                 <th>Título al que postula</th>
                 <th>Docente Guía</th>
@@ -47,13 +57,13 @@
             </tr>
         </thead>
         <tbody>
-        @if($papers)
-            @foreach($papers as $paper)
+        {{--  @if($papers)  --}}
+            @foreach($author->papers as $paper)
             <tr>
                 <td>{{$paper->id}}</td>
                 <td> <img height="150" src="{{$paper->photo ? $paper->photo->file : 'http://placehold.it/400x400'}}" alt="" ></td>
-                <td><a href="{{route('papers.show', ['id' => $paper->id])}}">{{$paper->titulo}}</a></td>
-                <td>
+                <td><a href="{{route('papers.edit', ['id' => $paper->id])}}">{{$paper->titulo}}</a></td>
+                {{--  <td>
                     @if($paper->authors)
 
                     @foreach($paper->authors as $author)
@@ -63,7 +73,7 @@
                     @else
                     "No tiene autor asignado."
                     @endif
-                </td>
+                </td>  --}}
                 <td>{{$paper->año}}</td>
                 <td>{{$paper->title->nombre}}</td>
                 <td>{{$paper->teacher->nombre}}</td>
@@ -71,9 +81,10 @@
                 <td>{{$paper->updated_at->diffForHumans()}}</td>
             </tr>
             @endforeach
-        @endif
+        {{--  @endif  --}}
 
         </tbody>
     </table>
 
+</div>
 @stop

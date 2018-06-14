@@ -5,41 +5,46 @@
 
 @section('content')
 
-<h1>Listado de Tesis registradas en el Sistema</h1>
+<h1>Visualización de Carrera</h1>
 
-@if(Session::has('deleted_paper'))
+{!! Form::model($title, ['method'=>'GET', 'action'=> ['AdminTitlesController@show', $title->id],'files'=>true]) !!}
 
-        <p class="bg-danger">{{session('deleted_paper')}}</p>
+<div class="col-sm-6" >
 
-@endif
+<div class="form-group" >
+    
+    {!! Form::label('nombre', 'Nombre:') !!}
+    {!! Form::text('nombre', null, ['class'=> 'form-control']) !!}
+            
+</div>
 
-@if(Session::has('created_paper'))
 
-        <p class="bg-danger">{{session('created_paper')}}</p>
+<div class="form-group">
 
-@endif
+    
+     <a href="{{route('titles.index')}}" class="btn btn-success col-sm-3">Index</a>
+     <a href="{{route('titles.edit', ['id' => $title->id])}}" class="btn btn-primary col-sm-3">Editar</a>
+    
+</div>
 
-@if(Session::has('updated_paper'))
 
-        <p class="bg-danger">{{session('updated_paper')}}</p>
+{!! Form::close() !!}
 
-@endif
+@include('includes.form_error')
+</div>
 
-@if(Session::has('existing_user'))
+<div class="col-sm-12" >
 
-        <p class="bg-danger">{{session('existing_user')}}</p>
-
-@endif
-
-    <table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Código</th>
                 <th>Portada</th>
                 <th>Título</th>
                 <th>Autor</th>
                 <th>Año</th>
-                <th>Título al que postula</th>
+                {{--  <th>Título al que postula</th>  --}}
                 <th>Docente Guía</th>
                 {{--<th>Tesis</th>  --}}
                 <th>Fecha de registro</th>
@@ -51,6 +56,7 @@
             @foreach($papers as $paper)
             <tr>
                 <td>{{$paper->id}}</td>
+                <td>{{$paper->codigo}} {{$paper->año}}</td>
                 <td> <img height="150" src="{{$paper->photo ? $paper->photo->file : 'http://placehold.it/400x400'}}" alt="" ></td>
                 <td><a href="{{route('papers.show', ['id' => $paper->id])}}">{{$paper->titulo}}</a></td>
                 <td>
@@ -65,7 +71,7 @@
                     @endif
                 </td>
                 <td>{{$paper->año}}</td>
-                <td>{{$paper->title->nombre}}</td>
+                {{--  <td>{{$paper->title->nombre}}</td>  --}}
                 <td>{{$paper->teacher->nombre}}</td>
                 <td>{{$paper->created_at->diffForHumans()}}</td>
                 <td>{{$paper->updated_at->diffForHumans()}}</td>
@@ -75,5 +81,5 @@
 
         </tbody>
     </table>
-
+</div>
 @stop

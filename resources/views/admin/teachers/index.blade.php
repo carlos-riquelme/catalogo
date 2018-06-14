@@ -43,9 +43,12 @@
             @foreach($teachers as $teacher)
             <tr>
                 <td>{{$teacher->id}}</td>
-                <td><a href="{{route('teachers.edit', ['id' => $teacher->id])}}">{{$teacher->nombre}}</a></td>
+                <td><a href="{{route('teachers.show', ['id' => $teacher->id])}}">{{$teacher->nombre}}</a></td>
                 <td>{{$teacher->tipo}}</td>
-                <td>"Cantidad de Tesis que tiene el Docente"</td>
+                <td>
+                    {{$teacher->paper->count()}}
+                </td>
+                {{--  <td>"Cantidad de Tesis que tiene el Docente"</td>  --}}
                 <td>{{$teacher->created_at->diffForHumans()}}</td>
                 <td>{{$teacher->updated_at->diffForHumans()}}</td>
             </tr>

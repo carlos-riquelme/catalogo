@@ -90,6 +90,13 @@ class AdminPapersController extends Controller
     public function show($id)
     {
         //
+        $papers = Paper::findOrFail($id);
+
+        $titles = Title::pluck('nombre', 'id')->all();
+
+        $teachers = Teacher::pluck('nombre', 'id')->all();
+
+        return view('admin.papers.show', compact('papers', 'titles', 'teachers'));
     }
 
     /**

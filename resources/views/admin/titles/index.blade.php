@@ -42,8 +42,8 @@
             @foreach($titles as $title)
             <tr>
                 <td>{{$title->id}}</td>
-                <td><a href="{{route('titles.edit', ['id' => $title->id])}}">{{$title->nombre}}</a></td>
-                <td>"Cantidad de Tesis por carrera"</td>
+                <td><a href="{{route('titles.show', ['id' => $title->id])}}">{{$title->nombre}}</a></td>
+                <td>{{$title->paper->count()}}</td>
                 {{--  <td>{{$author->role->name}}</td>
                 <td>{{$author->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>  --}}
                 <td>{{$title->created_at->diffForHumans()}}</td>

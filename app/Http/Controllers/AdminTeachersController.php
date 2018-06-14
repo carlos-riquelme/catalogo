@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\TeachersRequest;
 use App\Http\Requests\TeachersEditRequest;
 use App\Teacher;
+use App\Paper;
+use App\Photo;
 
 class AdminTeachersController extends Controller
 {
@@ -61,7 +63,11 @@ class AdminTeachersController extends Controller
     public function show($id)
     {
         //
-        return view('admin.authors.show');
+        $teacher = Teacher::findOrFail($id);
+
+        $papers = $teacher->paper;
+
+        return view('admin.teachers.show', compact('teacher', 'papers'));
     }
 
     /**

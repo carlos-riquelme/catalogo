@@ -22,7 +22,8 @@
 <div class="form-group">
 
     
-     {!! Form::submit('Actualizar Carrera', ['class'=> 'btn btn-primary col-sm-3']) !!}
+     {!! Form::submit('Actualizar Carrera', ['class'=> 'btn btn-success col-sm-3']) !!}
+     <a href="{{ URL::previous() }}" class="btn btn-primary col-sm-3">Cancelar</a>
     
 </div>
 

@@ -61,8 +61,11 @@ class AdminTitlesController extends Controller
     public function show($id)
     {
         //
-        return view('admin.titles.show');
-    }
+        $title = Title::findOrFail($id);
+
+        $papers = $title->paper;
+
+        return view('admin.titles.show', compact('title', 'papers'));    }
 
     /**
      * Show the form for editing the specified resource.

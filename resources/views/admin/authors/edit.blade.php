@@ -38,6 +38,7 @@
 
     
      {!! Form::submit('Actualizar User', ['class'=> 'btn btn-primary col-sm-3']) !!}
+     <a href="{{ URL::previous() }}" class="btn btn-primary col-sm-3">Volver</a>
     
 </div>
 
