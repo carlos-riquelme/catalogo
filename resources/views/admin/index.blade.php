@@ -64,7 +64,7 @@
 </div>
 </div>
 <div class="row">
-<div class="col-sm-3">
+{{--  <div class="col-sm-3">
 <div class="box box-solid box-primary">
 
   <div class="box-header with-border ">
@@ -82,10 +82,14 @@
     <a href="{{route('titles.show', ['id' => $lt_title->id])}}">{{$lt_title->nombre}}</a>
   </div>
   <!-- /.box-body -->
+  <div class="box-footer">
+    <span class="label"><a href="{{route('titles.index')}}">Ver todas</a></span>
+  </div>
+  <!-- box-footer -->
 </div>
 </div>
-<!-- /.box -->
-<div class="col-sm-3">
+<!-- /.box -->  --}}
+{{--  <div class="col-sm-4">
 <div class="box box-solid box-primary">
 
   <div class="box-header with-border ">
@@ -103,10 +107,14 @@
      <a href="{{route('authors.show', ['id' => $lt_author->id])}}">{{$lt_author->nombre}} {{$lt_author->apellidos}}</a>
   </div>
   <!-- /.box-body -->
+      <div class="box-footer">
+    <span class="label"><a href="{{route('authors.index')}}">Ver todos</a></span>
+  </div>
+  <!-- box-footer -->
 </div>
 </div>
 <!-- /.box -->
-<div class="col-sm-3">
+<div class="col-sm-4">
 <div class="box box-solid box-primary">
 
   <div class="box-header with-border ">
@@ -124,10 +132,14 @@
     <a href="{{route('papers.show', ['id' => $lt_paper->id])}}">{{$lt_paper->titulo}}</a>
   </div>
   <!-- /.box-body -->
+      <div class="box-footer">
+    <span class="label"><a href="{{route('papers.index')}}">Ver todas</a></span>
+  </div>
+  <!-- box-footer -->
 </div>
 </div>
-<!-- /.box -->
-<div class="col-sm-3">
+<!-- /.box -->  --}}
+{{--  <div class="col-sm-3">
 <div class="box box-solid box-primary">
 
   <div class="box-header with-border ">
@@ -145,9 +157,13 @@
     <a href="{{route('teachers.show', ['id' => $lt_teacher->id])}}">{{$lt_teacher->nombre}}</a>
   </div>
   <!-- /.box-body -->
+    <div class="box-footer">
+    <span class="label"><a href="{{route('teachers.index')}}">Ver todos</a></span>
+  </div>
+  <!-- box-footer -->
 </div>
 </div>
-<!-- /.box -->
+<!-- /.box -->  --}}
 </div>
 
 <div class="row">
@@ -204,7 +220,7 @@
   </div>
   <!-- /.box-body -->
   <div class="box-footer">
-    <span class="label"><a href="{route('papers.index')}}">Ver todas las Tesis</a></span>
+    <span class="label"><a href="{{route('papers.index')}}">Ver todas las Tesis</a></span>
   </div>
   <!-- box-footer -->
 </div>
