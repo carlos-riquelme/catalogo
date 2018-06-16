@@ -1,13 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
+@section('title', 'UAC-Ancud')
 
 @section('content')
 
-<h1>Edición de Tesis</h1>
+{!! Form::model($papers, ['method'=>'GET', 'action'=> ['UserTesisController@show', $papers->id],'files'=>true]) !!}
 
-{!! Form::model($papers, ['method'=>'GET', 'action'=> ['AdminPapersController@show', $papers->id],'files'=>true]) !!}
+<h1>Tesis {{$papers->codigo}} {{$papers->año}}</h1>
+@if($papers->authors)
+@foreach($papers->authors as $author)
+<h3>Autor: {{$author->nombre}} {{$author->apellidos}}</h3>
+@endforeach
+@endif
 
 <div class="col-sm-3">
 
@@ -22,28 +26,9 @@
 <div class="form-group" >
     
     {!! Form::label('titulo', 'Título:') !!}
-    {!! Form::text('titulo', null, ['readonly', 'class'=> 'form-control']) !!}
+    {!! Form::textarea('titulo', null, ['readonly', 'class'=> 'form-control', 'rows' => 3,]) !!}
             
 </div>
-
-{{--  <div class="form-group">
-            {!! Form::label('photo_id', 'Portada:') !!}
-            {!! Form::file('photo_id', null, ['readonly', 'class'=>'form-control'])!!}
-</div>  --}}
-
-{{--  <div class="form-group" >
-    
-    {!! Form::label('nombre', 'Nombres:') !!}
-    {!! Form::text('nombre', null, ['class'=> 'form-control']) !!}
-            
-</div>
-
-<div class="form-group" >
-    
-    {!! Form::label('apellidos', 'Apellidos:') !!}
-    {!! Form::text('apellidos', null, ['class'=> 'form-control']) !!}
-            
-</div>  --}}
 
 <div class="form-group" >
     
@@ -83,8 +68,7 @@
 
     
     {{--  {!! Form::submit('Actualizar Tesis', ['class'=> 'btn btn-primary col-sm-3']) !!}  --}}
-    <a href="{{route('papers.index') }}" class="btn btn-success">Index</a>
-    <a href="{{route('papers.edit', ['id' => $papers->id])}}" class="btn btn-primary">Editar</a>
+    <a href="{{route('tesis.index') }}" class="btn btn-success">Volver al Index</a>
     
 </div>
 

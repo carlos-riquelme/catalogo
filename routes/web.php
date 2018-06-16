@@ -19,7 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/titulos', 'UserTitlesController');
-
+Route::resource('/autores', 'UserAutoresController');
+Route::resource('/tesis', 'UserTesisController');
+Route::resource('/docentes', 'UserDocentesController');
 
 Route::group(['middleware' => 'admin'], function() {
     //

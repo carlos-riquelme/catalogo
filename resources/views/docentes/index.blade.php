@@ -1,25 +1,29 @@
 @extends('adminlte::page')
 
-@section('title', 'Carreras')
+@section('title', 'Docentes')
 
 
 @section('content')
 
-<h1>Listado de Carreras registradas en el Sistema</h1>
+<h1>Listado de Docentes registrados en el Sistema</h1>
 
     <table class="data-table">
         <thead>
             <tr>
                 <th>Nombre</th>
+                <th>Tipo</th>
                 <th>Cantidad de Tesis</th>
             </tr>
         </thead>
         <tbody>
-        @if($titles)
-            @foreach($titles as $title)
+        @if($teachers)
+            @foreach($teachers as $teacher)
             <tr>
-                <td><a href="{{route('titulos.show', ['id' => $title->id])}}">{{$title->nombre}}</a></td>
-                <td>{{$title->paper->count()}}</td>
+                <td><a href="{{route('docentes.show', ['id' => $teacher->id])}}">{{$teacher->nombre}}</a></td>
+                <td>{{$teacher->tipo}}</td>
+                <td>
+                    {{$teacher->paper->count()}}
+                </td>
             </tr>
             @endforeach
         @endif
@@ -32,7 +36,7 @@
     <script>
         $(document).ready(function () {
             $('.data-table').dataTable({
-        "order": [[ 0, "asc" ]],
+        "order": [[ 3, "asc" ]],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.18/i18n/Spanish.json"
         }

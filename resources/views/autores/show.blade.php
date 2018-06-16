@@ -5,48 +5,51 @@
 
 @section('content')
 
-<h1>{{$title->nombre}}</h1>
+<div class="col-sm-6" >
 
 
+<div class="form-group">
+
+    <a href="{{route('autores.index')}}" class="btn btn-primary">Volver al Index</a>
+                
+</div>
+
+<h1>{{$author->nombre}} {{$author->apellidos}}</h1>
+
+{!! Form::model($author, ['method'=>'GET', 'action'=> ['UserAutoresController@show', $author->id],'files'=>true]) !!}
+
+
+{!! Form::close() !!}
+
+</div>
 <div class="col-sm-12" >
 
-<table id="table" class="data-table" style="width:100%">
+<h2>Listado de Tesis asociadas al autor</h2>
+
+<table class="data-table">
         <thead>
             <tr>
-                <th>Código</th>
                 <th>Portada</th>
                 <th>Título</th>
-                <th>Autor</th>
                 <th>Año</th>
+                <th>Título al que postula</th>
                 <th>Docente Guía</th>
             </tr>
         </thead>
         <tbody>
-        @if($papers)
-            @foreach($papers as $paper)
+            @foreach($author->papers as $paper)
             <tr>
-                <td>{{$paper->codigo}} {{$paper->año}}</td>
                 <td> <img height="150" src="{{$paper->photo ? $paper->photo->file : 'http://placehold.it/400x400'}}" alt="" ></td>
                 <td><a href="{{route('tesis.show', ['id' => $paper->id])}}">{{$paper->titulo}}</a></td>
-                <td>
-                    @if($paper->authors)
-
-                    @foreach($paper->authors as $author)
-                        <a href="{{route('autores.show', ['id' => $author->id])}}">{{$author->nombre}}   {{$author->apellidos}}</a>
-                    @endforeach
-
-                    @else
-                    "No tiene autor asignado."
-                    @endif
-                </td>
                 <td>{{$paper->año}}</td>
+                <td>{{$paper->title->nombre}}</td>
                 <td>{{$paper->teacher->nombre}}</td>
             </tr>
             @endforeach
-        @endif
 
         </tbody>
     </table>
+
 </div>
 @stop
 @section('js')
