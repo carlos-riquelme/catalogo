@@ -129,10 +129,12 @@ return [
             'text' => 'Autores',
             'icon'        => 'a fa-user',
             'label_color' => 'success',
+            'can' => 'admin-only',
             'submenu' => [
                 [
                     'text' => 'Todos',
                     'url'  => 'admin/authors',
+                    'can' => 'admin-only',
                 ],
                 [
                     'text' => 'Registrar Autor',
@@ -145,6 +147,7 @@ return [
             'text' => 'Carreras',
             'icon'        => 'a fa-graduation-cap',
             'label_color' => 'success',
+            'can' => 'admin-only',
             'submenu' => [
                 [
                     'text' => 'Todas',
@@ -161,6 +164,7 @@ return [
             'text' => 'Docentes',
             'icon'        => 'fa fa-user-circle',
             'label_color' => 'success',
+            'can' => 'admin-only',
             'submenu' => [
                 [
                     'text' => 'Todos',
@@ -177,6 +181,7 @@ return [
             'text' => 'Tesis',
             'icon'        => 'a fa-file-text-o',
             'label_color' => 'success',
+            'can' => 'admin-only',
             'submenu' => [
                 [
                     'text' => 'Todas',
