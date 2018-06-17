@@ -13,6 +13,19 @@
     <h3>Bienvenido al Catálogo de Consulta de Tesis y Tesinas de la Universidad de Aconcagua Sede Ancud</h3>
 <div class="row">
 <div class="col-sm-3">
+<!-- /.info-box -->
+<div class="info-box">
+  <!-- Apply any bg-* class to to the icon to color it -->
+  <span class="info-box-icon bg-white"><a href="{{route('autores.index')}}"><i class="fa fa-user"></i></a></span>
+  <div class="info-box-content">
+    <span class="info-box-text">Autores</span>
+    <span class="info-box-number">{{ $authors->count() }}</span>
+  </div>
+  <!-- /.info-box-content -->
+</div>
+<!-- /.info-box -->
+</div>
+<div class="col-sm-3">
 <div class="info-box">
   <!-- Apply any bg-* class to to the icon to color it -->
   <span class="info-box-icon bg-white"><a href="{{route('titulos.index')}}"><i class="fa fa-graduation-cap"></i></a></span>
@@ -23,14 +36,15 @@
   <!-- /.info-box-content -->
 </div>
 </div>
+
 <div class="col-sm-3">
 <!-- /.info-box -->
 <div class="info-box">
   <!-- Apply any bg-* class to to the icon to color it -->
-  <span class="info-box-icon bg-white"><a href="{{route('autores.index')}}"><i class="fa fa-user"></i></a></span>
+  <span class="info-box-icon bg-white"><a href="{{route('docentes.index')}}"><i class="fa fa-user-circle"></i></a></span>
   <div class="info-box-content">
-    <span class="info-box-text">Autores</span>
-    <span class="info-box-number">{{ $authors->count() }}</span>
+    <span class="info-box-text">Docentes</span>
+    <span class="info-box-number">{{ $teachers->count() }}</span>
   </div>
   <!-- /.info-box-content -->
 </div>
@@ -49,19 +63,7 @@
 </div>
 <!-- /.info-box -->
 </div>
-<div class="col-sm-3">
-<!-- /.info-box -->
-<div class="info-box">
-  <!-- Apply any bg-* class to to the icon to color it -->
-  <span class="info-box-icon bg-white"><a href="{{route('docentes.index')}}"><i class="fa fa-user-circle"></i></a></span>
-  <div class="info-box-content">
-    <span class="info-box-text">Docentes</span>
-    <span class="info-box-number">{{ $teachers->count() }}</span>
-  </div>
-  <!-- /.info-box-content -->
-</div>
-<!-- /.info-box -->
-</div>
+
 </div>
 
 <div class="row">

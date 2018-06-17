@@ -113,6 +113,7 @@ return [
             'text' => 'Usuarios',
             'icon'        => 'file',
             'label_color' => 'success',
+            'can' => 'admin-only',
             'submenu' => [
                 [
                     'text' => 'Todos',
@@ -126,7 +127,7 @@ return [
         ],
         [
             'text' => 'Autores',
-            'icon'        => 'file',
+            'icon'        => 'a fa-user',
             'label_color' => 'success',
             'submenu' => [
                 [
@@ -136,42 +137,13 @@ return [
                 [
                     'text' => 'Registrar Autor',
                     'url' => 'admin/authors/create',
-                ],
-            ],
-        ],
-        [
-            'text' => 'Tesis',
-            'icon'        => 'file',
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Todas',
-                    'url'  => 'admin/papers',
-                ],
-                [
-                    'text' => 'Ingresar Tesis',
-                    'url' => 'admin/papers/create',
-                ],
-            ],
-        ],
-        [
-            'text' => 'Docentes',
-            'icon'        => 'file',
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'text' => 'Todos',
-                    'url'  => 'admin/teachers',
-                ],
-                [
-                    'text' => 'Crear Docente',
-                    'url' => 'admin/teachers/create',
+                    'can' => 'admin-only',
                 ],
             ],
         ],
         [
             'text' => 'Carreras',
-            'icon'        => 'file',
+            'icon'        => 'a fa-graduation-cap',
             'label_color' => 'success',
             'submenu' => [
                 [
@@ -181,6 +153,39 @@ return [
                 [
                     'text' => 'Crear Carrera',
                     'url' => 'admin/titles/create',
+                    'can' => 'admin-only',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Docentes',
+            'icon'        => 'fa fa-user-circle',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'url'  => 'admin/teachers',
+                ],
+                [
+                    'text' => 'Crear Docente',
+                    'url' => 'admin/teachers/create',
+                    'can' => 'admin-only',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Tesis',
+            'icon'        => 'a fa-file-text-o',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Todas',
+                    'url'  => 'admin/papers',
+                ],
+                [
+                    'text' => 'Ingresar Tesis',
+                    'url' => 'admin/papers/create',
+                    'can' => 'admin-only',
                 ],
             ],
         ],
