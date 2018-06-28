@@ -25,7 +25,7 @@
 
 @endif
 
-    <table class="table table-bordered table-hover">
+    <table class="data-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -58,4 +58,16 @@
         </tbody>
     </table>
 
+@stop
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('.data-table').dataTable({
+        "order": [[ 1, "asc" ]],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.18/i18n/Spanish.json"
+        }
+    });
+        });
+    </script>
 @stop

@@ -5,9 +5,15 @@
 
 @section('content')
 
-<h1>Edición de Tesis</h1>
+<h1>Vista de Tesis</h1>
 
 {!! Form::model($papers, ['method'=>'GET', 'action'=> ['AdminPapersController@show', $papers->id],'files'=>true]) !!}
+
+@if($papers->authors)
+@foreach($papers->authors as $author)
+<h3>{{$author->nombre}} {{$author->apellidos}}</h3>
+@endforeach
+@endif
 
 <div class="col-sm-3">
 
@@ -64,7 +70,7 @@
     
     {!! Form::label('title_id', 'Título al que postula:') !!}
     {{--  {!! Form::select('title_id', $titles, null, ['readonly', 'class'=> 'form-control']) !!}  --}}
-    {!! Form::text('title_id', $papers->title->nombre, ['readonly', 'class'=> 'form-control']) !!}
+    {!! Form::text('title_id', $papers->title ? $papers->title->nombre : 'Sin asignar', ['readonly', 'class'=> 'form-control']) !!}
     
     
 </div>
@@ -73,7 +79,7 @@
     
     {!! Form::label('teacher_id', 'Docente Guía:') !!}
     {{--  {!! Form::select('teacher_id', $teachers, null, ['readonly', 'class'=> 'form-control']) !!}  --}}
-    {!! Form::text('teacher_id', $papers->teacher->nombre, ['readonly', 'class'=> 'form-control']) !!}
+    {!! Form::text('teacher_id', $papers->teacher ? $papers->teacher->nombre : 'Sin asignar', ['readonly', 'class'=> 'form-control']) !!}
     
     
 </div>

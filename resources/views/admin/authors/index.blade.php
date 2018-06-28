@@ -24,8 +24,8 @@
         <p class="bg-danger">{{session('updated_author')}}</p>
 
 @endif
-{{ $authors->links() }}
-    <table class="table table-bordered table-hover">
+{{--  {{ $authors->links() }}  --}}
+    <table class="data-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -78,5 +78,17 @@
 
         </tbody>
     </table>
-{{ $authors->links() }}
+{{--  {{ $authors->links() }}  --}}
+@stop
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('.data-table').dataTable({
+        "order": [[ 3, "asc" ]],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.18/i18n/Spanish.json"
+        }
+    });
+        });
+    </script>
 @stop
