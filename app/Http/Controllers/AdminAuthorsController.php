@@ -19,7 +19,7 @@ class AdminAuthorsController extends Controller
     public function index()
     {
         //
-        $authors = Author::simplePaginate(15);
+        $authors = Author::all();
 
         // $papers = Paper::has('author')->get();
 
@@ -115,6 +115,8 @@ class AdminAuthorsController extends Controller
         $input = $request->all();
 
         $author->update($input);
+
+        $author->papers()->sync($request->input('paper_id'));
 
         Session::flash('updated_author', 'Se actualizó al autor');
 

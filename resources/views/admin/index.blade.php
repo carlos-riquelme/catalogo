@@ -109,8 +109,8 @@
                     @endif
                 </td>
                 <td>{{$lt5_paper->año}}</td>
-                <td>{{$lt5_paper->title->nombre}}</td>
-                <td>{{$lt5_paper->teacher->nombre}}</td>
+                <td>{{$lt5_paper->title ? $lt5_paper->title->nombre : 'Sin asignar aún'}}</td>
+                <td>{{$lt5_paper->teacher ? $lt5_paper->teacher->nombre : 'Sin asignar aún'}}</td>
             </tr>
         @endforeach
         @endif
