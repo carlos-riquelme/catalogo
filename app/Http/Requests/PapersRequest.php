@@ -28,6 +28,8 @@ class PapersRequest extends FormRequest
             'titulo' => 'required|max:400',
             'photo_id' => 'required|image',
             'codigo' => 'required|max:12',
+            'nombre' => 'required',
+            'apellidos' => 'required',
             'año' => 'required',
             'title_id' => 'required',
             'teacher_id' => 'required'

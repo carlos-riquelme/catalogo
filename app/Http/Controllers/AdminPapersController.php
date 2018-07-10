@@ -70,7 +70,10 @@ class AdminPapersController extends Controller
         //     'apellidos' => $request->apellidos
         // ];
 
-        Paper::create($input);
+        $paper = Paper::create($input);
+        $author = Author::create($input);
+        //Sincroniza el autor con la tesis en la tabla pivote. Permite agregar un autor al crear la tesis
+        $author->papers()->sync($paper->id);
 
         // Author::create($author);
 

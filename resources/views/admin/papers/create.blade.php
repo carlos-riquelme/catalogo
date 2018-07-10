@@ -23,7 +23,7 @@
             {!! Form::file('photo_id', null, ['class'=>'form-control'])!!}
 </div>
 
-{{--  <div class="form-group" >
+<div class="form-group" >
     
     {!! Form::label('nombre', 'Nombres:') !!}
     {!! Form::text('nombre', null, ['class'=> 'form-control']) !!}
@@ -35,7 +35,7 @@
     {!! Form::label('apellidos', 'Apellidos:') !!}
     {!! Form::text('apellidos', null, ['class'=> 'form-control']) !!}
             
-</div>  --}}
+</div>
 
 <div class="form-group" >
     
