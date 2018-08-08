@@ -81,7 +81,7 @@ class AdminPapersController extends Controller
 
         Session::flash('created_paper', 'Se ha agregado una nueva Tesis.');
 
-        return redirect('/admin/papers');
+        return redirect('/admin/papers/create'); //Redirecciona a Create para seguir agregando tesis. Cambiar cuando se termine.
     }
 
     /**

@@ -22,7 +22,7 @@
             {!! Form::label('photo_id', 'Portada:') !!}
             {!! Form::file('photo_id', null, ['class'=>'form-control'])!!}
 </div>
-
+<h3>Autor</h3>
 <div class="form-group" >
     
     {!! Form::label('nombre', 'Nombres:') !!}
