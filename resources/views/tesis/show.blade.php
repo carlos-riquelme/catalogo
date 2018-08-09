@@ -7,9 +7,10 @@
 {!! Form::model($papers, ['method'=>'GET', 'action'=> ['UserTesisController@show', $papers->id],'files'=>true]) !!}
 
 <h1>Tesis {{$papers->codigo}} {{$papers->año}}</h1>
+<h2>Autores:</h2>
 @if($papers->authors)
 @foreach($papers->authors as $author)
-<h3>Autor: {{$author->nombre}} {{$author->apellidos}}</h3>
+<h3>{{$author->nombre}} {{$author->apellidos}}</h3>
 @endforeach
 @endif
 

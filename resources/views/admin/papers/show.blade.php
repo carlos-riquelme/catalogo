@@ -6,7 +6,7 @@
 @section('content')
 
 <h1>Vista de Tesis</h1>
-
+<h2>Autores:</h2>
 {!! Form::model($papers, ['method'=>'GET', 'action'=> ['AdminPapersController@show', $papers->id],'files'=>true]) !!}
 
 @if($papers->authors)
